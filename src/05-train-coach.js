@@ -6,8 +6,8 @@
  * sab confirmed hain ya nahi. Array search methods ka tour hai yeh!
  *
  * Data format: passengers = [
- *   { name: "Rahul", coach: "S5", seat: 42, status: "confirmed" },
- *   { name: "Priya", coach: "S3", seat: 15, status: "waitlisted" },
+ *   { name: "Siddhi", coach: "S5", seat: 42, status: "confirmed" },
+ *   { name: "Saurav", coach: "S3", seat: 15, status: "waitlisted" },
  *   ...
  * ]
  *
@@ -49,20 +49,37 @@
  */
 export function findPassenger(passengers, name) {
   // Your code here
+  if (Array.isArray(passengers) === false || typeof name !== "string") return undefined;
+  const found = passengers.find((passenger) => passenger.name.toLowerCase() === name.toLowerCase());
+  if (found === null) return undefined;
+  // if (!found) return undefined; //similar to above line
+  return found;
 }
 
 export function getPassengerIndex(passengers, name) {
   // Your code here
+  if (Array.isArray(passengers) === false || typeof name !== "string") return -1;
+  const passengerName = (passenger) => passenger.name.toLowerCase() === name.toLowerCase();
+  return passengers.findIndex(passengerName);
 }
 
 export function isAnyWaitlisted(passengers) {
   // Your code here
+  if (Array.isArray(passengers) === false || passengers.length === 0)return false;
+  const yatriGan = (yatri) => yatri.status === "waitlisted";
+  return passengers.some(yatriGan);
 }
 
 export function areAllConfirmed(passengers) {
   // Your code here
+  if (Array.isArray(passengers) === false || passengers.length === 0)return false;
+  const yatriGan = (yatri) => yatri.status === "confirmed";
+  return passengers.every(yatriGan);
 }
 
 export function getWaitlistedPassengers(passengers) {
   // Your code here
+  if (Array.isArray(passengers) === false) return [];
+  const yatriGan = passengers.filter((passenger) => passenger.status === "waitlisted");
+  return yatriGan;
 }
